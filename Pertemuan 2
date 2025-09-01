@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>CV Saya</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    h1, h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .profil {
+      text-align: center;
+    }
+    .profil img {
+      width: 150px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    form {
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+    button {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    button:hover {
+      background: #34495e;
+    }
+    .social a {
+      margin-right: 10px;
+      color: #2980b9;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="profil">
+      <h1>Profil Saya</h1>
+      <img src="foto.jpg" alt="Foto Profil">
+      <p>Haloo, nama saya Shafira Nauraishma Zahida. Saya seorang mahasiswa tahun kedua Teknik Informatika di Institut Teknologi Sepuluh Nopember. 
+         saya dikenal sebagai orang yang ramah dan mudah bergaul dengan siapa saja. 
+         Saya tipe orang yang terencana dan terstruktur dalam segala jadwal kegiatan. 
+         Selain itu, saya juga sangat antusias untuk mempelajari dan eksplore lebih hal-hal baru karena menurut saya itu adalah tantangan yang perlu saya coba selesaikan.</p>
+    </div>
+
+    <h2>Hobi</h2>
+    <ul>
+      <li>Membaca novel atau komik</li>
+      <li>Olahraga basket</li>
+      <li>Baking</li>
+      <li>Mendengarkan musik</li>
+    </ul>
+
+    <h2>Riwayat Pendidikan</h2>
+    <table>
+      <tr>
+        <th>Tahun</th>
+        <th>Sekolah</th>
+        <th>Alamat</th>
+        <th>Aktivitas/pencapaian</th>
+      </tr>
+      <tr>
+        <td>2012 - 2018</td>
+        <td>SDN Kebonsari 1 Tuban</td>
+        <td>Jl. Gajahmada No.20, Kebonsari, Kec. Tuban, Kabupaten Tuban, Jawa Timur 62312</td>
+        <td>
+            <ul>
+                <li>Nilai UN 27,7</li>
+                <li>Juara 3 Olimpiade Matematika Tingkat kabupaten</li>
+                <li>Anggota Paskibra Sekolah</li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>2018 - 2021</td>
+        <td>SMP Negeri 2 Surabaya</td>
+        <td>Jl. Kepanjen No.1, Krembangan Sel., Kec. Krembangan, Surabaya, Jawa Timur 60175</td>
+        <td>
+            <ul>
+                <li>Pengurus dewan galang</li>
+                <li>Lulusan dengan nilai rapot tertinggi</li>
+            </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>2021 - 2024</td>
+        <td>SMA Negeri 6 Surabaya</td>
+        <td> Jl. Gubernur Suryo No.11, Embong Kaliasin, Kec. Genteng, Surabaya, Jawa Timur 60271</td>
+        <td>Juara 3 Lomba basket 3x3 Putri</td>
+      </tr>
+      <tr>
+        <td>2024 - Sekarang</td>
+        <td>Institut Teknologi Sepuluh Nopember</td>
+        <td>Jl. Teknik Kimia, Keputih, Kec. Sukolilo, Surabaya, Jawa Timur 60111</td>
+        <td>IPK Semester 3,59</td>
+      </tr>
+    </table>
+
+    <h2>Kontak Saya</h2>
+    <form>
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telepon">No Telp:</label>
+      <textarea id="pesan" name="pesan" rows="4"></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+
+    <h2>Media Sosial</h2>
+    <div class="social">
+      <a href="instagram.com/hey__shafzz/" target="_blank">Instagram</a>
+      <a href="https://linkedin.com/in/ShafiraNZ/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</body>
+</html>
