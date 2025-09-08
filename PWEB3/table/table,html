@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabel Daftar Nilai Mahasiswa</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #FFFDF5;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 650px;
+      margin: 30px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    caption {
+      caption-side: top;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #364C84;
+    }
+
+    th, td {
+      border: 1px solid #95B1EE;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #364C84;
+      color: white;
+    }
+
+    tr:nth-child(even) td {
+      background: #E7F1A8; 
+    }
+
+    tr:nth-child(odd) td {
+      background: #FFFDF5; 
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <caption>Tabel Daftar Nilai Mahasiswa</caption>
+    <tr>
+      <th rowspan="2">No</th>
+      <th rowspan="2">NPM</th>
+      <th rowspan="2">Nama</th>
+      <th colspan="2">Nilai</th>
+    </tr>
+    <tr>
+      <th>UTS</th>
+      <th>UAS</th>
+    </tr>
+    <tr>
+      <td>1.</td>
+      <td>06.100.001</td>
+      <td>Amin A. Angkasa</td>
+      <td>70</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>06.100.002</td>
+      <td>Beni B. Bernardi</td>
+      <td>70</td>
+      <td>80</td>
+    </tr>
+  </table>
+</body>
+</html>
