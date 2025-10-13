@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happyloop | Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>  
+<body>
+  <!-- HEADER / HERO -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="https://i.pinimg.com/1200x/5a/65/60/5a65606c5e885a86f8afa2bb56251bba.jpg" alt="Happyloop Logo">
+      <h1>HAPPYLOOP</h1>
+    </div>
+    <nav>
+      <a href="Home.html" class="active">Home</a>
+      <a href="Benefit.html">Benefit</a>
+      <a href="About-Us.html">About Us</a>
+      <a href="Promo.html">Promo</a>
+      <a href="Testimoni.html">Testimoni</a>
+      <a href="FAQ.html">FAQ</a>
+      <a href="Contact.html" class="btn-nav">Hubungi Kami</a>
+    </nav>
+  </header>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <h3>Pertanyaan yang Sering Diajukan</h3>
+  
+      <div class="faq-search-container">
+        <input type="text" id="faqSearch" placeholder="Cari pertanyaan...">
+        <button onclick="filterFAQ()">Search</button>
+      </div>
+  <div id="faqList">
+  <details>
+    <summary>Berapa lama durasi peminjaman mainan?</summary>
+    <p>Kamu bisa meminjam mainan mulai dari 3 hari, 1 minggu, atau sesuai paket yang dipilih. Ada opsi perpanjangan jika ingin bermain lebih lama.</p>
+  </details>
+  <details>
+    <summary>Bagaimana cara menghubungi support?</summary>
+    <p>Kamu bisa mengisi formulir di atas atau mengirim email ke <b>support@happyloop.id</b>. Tim kami akan segera membantu kamu.</p>
+  </details>
+  <details>
+    <summary>Apakah mainan dijamin bersih dan aman?</summary>
+    <p>Ya! Semua mainan kami selalu dibersihkan, diperiksa, dan dijaga kualitasnya sebelum dikirim ke pengguna.</p>
+  </details>
+  <details>
+    <summary>Apakah saya bisa memilih mainan sesuai usia?</summary>
+    <p>Tentu! Kamu bisa memfilter mainan berdasarkan kategori usia dan minat, sehingga pengalaman bermain lebih tepat dan menyenangkan.</p>
+  </details>
+  </div>    
+</section>
+
+<script>
+function filterFAQ() {
+  const input = document.getElementById('faqSearch');
+  const filter = input.value.toLowerCase();
+  const faqList = document.getElementById('faqList');
+  const details = faqList.getElementsByTagName('details');
+
+  for (let i = 0; i < details.length; i++) {
+    const summary = details[i].getElementsByTagName('summary')[0];
+    if (summary.innerText.toLowerCase().includes(filter)) {
+      details[i].style.display = "";
+    } else {
+      details[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Happyloop. Semua Hak Dilindungi.</p>
+  </footer>
+</body>
+</html>
