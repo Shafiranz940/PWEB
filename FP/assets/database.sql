@@ -10,19 +10,20 @@ USE bimbel_db;
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
+  gender VARCHAR(100) NOT NULL,
+  username VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE,
   password VARCHAR(255),
-  role ENUM('admin','siswa') DEFAULT 'siswa',
   total_points INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name,email,role,total_points) VALUES
-('Alya','alya@mail.com','siswa',1200),
-('Rizky','rizky@mail.com','siswa',1100),
-('Nabila','nabila@mail.com','siswa',980),
-('Naufa','naufa@mail.com','siswa',975),
-('Dani','dani@mail.com','siswa',950);
+INSERT INTO users (name, gender, username, email, password, total_points) VALUES
+('Alya',   'Perempuan', 'alya01',   'alya@mail.com',   'alya123',   1200),
+('Rizky',  'Laki-laki', 'rizky01',  'rizky@mail.com',  'rizky123',  1100),
+('Nabila', 'Perempuan', 'nabila01', 'nabila@mail.com', 'nabila123', 980),
+('Naufa',  'Laki-laki', 'naufa01',  'naufa@mail.com',  'naufa123',  975),
+('Dani',   'Laki-laki', 'dani01',   'dani@mail.com',   'dani123',   950);
 
 -- ===============================
 -- CLASSES (KELAS)
