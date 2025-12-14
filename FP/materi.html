@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Materi Belajar</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+:root{
+    --green:#6D9773;
+    --dark:#0C3B2E;
+    --brown:#BB8A52;
+    --yellow:#FFBA00;
+    --muted:#6b7280;
+    --glass:rgba(255,255,255,.9);
+    --border:#eee;
+    }
+
+    /* FULL COVER */
+    html,body{
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    font-family:'Roboto',system-ui,Arial;
+    background:var(--dark);
+    }
+
+    /* COVER */
+  .cover{
+  width:95vw;
+  height:96vh;
+  margin:2vh auto;
+  background:var(--glass);
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  gap:20px;
+  box-shadow:0 18px 50px rgba(12,59,46,.08);
+  box-sizing:border-box;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  flex-shrink:0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--green),var(--brown));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+.navlink{
+  padding:10px 12px;
+  border-radius:10px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  color:var(--muted);
+}
+.navlink i{color:var(--green)}
+.navlink.active{
+  background:rgba(109,151,115,.15);
+  color:var(--dark);
+  font-weight:600;
+}
+.quick-card{
+  margin-top:auto;
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+}
+
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.content{
+  flex:1;
+  overflow-y:auto;
+  padding-right:6px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.filter-bar button.active{
+  background:var(--green);
+  color:#fff;
+}
+
+.class-card{
+  background:#fff;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+
+/* MATERI READER */
+.materi-reader{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:99;
+}
+.materi-box{
+  background:#fff;
+  width:600px;
+  max-height:80vh;
+  padding:20px;
+  border-radius:14px;
+  overflow:auto;
+  position:relative;
+}
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  border:none;
+  background:none;
+  font-size:20px;
+}
+
+/* VIDEO */
+.video-list .class-card:hover{
+  background:#f8f9fa;
+}
+
+/* ===== MATERI GRID ===== */
+.materi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:18px;
+}
+
+.materi-item{
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.05);
+  cursor:pointer;
+  transition:.25s;
+}
+
+.materi-item:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
+}
+
+.materi-thumb{
+  height:110px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#e7f1ff,#dbeafe);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.materi-title{
+  font-weight:600;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.materi-meta{
+  font-size:13px;
+  color:#6b7280;
+  margin-bottom:10px;
+}
+
+.progress{
+  height:6px;
+  border-radius:6px;
+}
+
+/* LIVE CARD */
+.live-card{
+  min-width:220px;
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+  cursor:pointer;
+  transition:.25s;
+}
+.live-card:hover{
+  transform:translateY(-4px);
+}
+
+.live-thumb{
+  height:90px;
+  border-radius:10px;
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+/* ZOOM CARD */
+.zoom-card{
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="cover">
+
+  <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+        <div class="logo">Logo</div>
+        <strong>NAMA BIMBEL</strong>
+        </div>
+
+        <div class="navlink" onclick="location.href='dashboard.html'">
+        <i class="bi bi-speedometer2"></i>Dashboard
+        </div>
+        <div class="navlink" onclick="location.href='kelas.html'">
+        <i class="bi bi-people-fill"></i>Daftar Kelas
+        </div>
+        <div class="navlink" onclick="location.href='materi.html'">
+        <i class="bi bi-journal-bookmark"></i>Materi Belajar
+        </div>
+        <div class="navlink" onclick="location.href='quiz.html'">
+        <i class="bi bi-calendar2-event"></i>Latihan Soal
+        </div>
+        <div class="navlink" onclick="location.href='LaporanSiswa.html'">
+            <i class="bi bi-graph-up"></i>Laporan Siswa
+        </div>
+        <div class="navlink" onclick="location.href='setting.html'">
+        <i class="bi bi-gear-fill"></i>Pengaturan
+        </div>
+
+        <div class="quick-card">
+        <strong>Quick Actions</strong>
+        <button class="btn btn-sm mt-2" style="background:var(--green);color:#fff">
+            📝 Lanjutkan Belajar
+        </button>
+        </div>
+    </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="content">
+
+      <!-- HEADER -->
+      <div class="card text-white" style="background:linear-gradient(135deg,#6D9773,#0C3B2E)">
+        <h4>📚 Materi Belajar</h4>
+        <p class="mb-0">Materi, Video, Live Streaming & Zoom</p>
+      </div>
+
+      <!-- TAB -->
+      <div class="filter-bar mb-3">
+        <button class="btn btn-sm btn-light active" onclick="showTab('materi',this)">📄 Materi</button>
+        <button class="btn btn-sm btn-light" onclick="showTab('video',this)">🎥 Video</button>
+        <button class="btn btn-sm btn-light" onclick="showTab('live',this)">🔴 Live</button>
+      </div>
+
+      <!-- TAB MATERI -->
+      <div id="tab-materi">
+        <div id="materiList" class="materi-grid"></div>
+      </div>
+
+      <!-- TAB VIDEO -->
+      <div id="tab-video" class="d-none">
+        <div class="row">
+          <div class="col-4 video-list" id="videoList"></div>
+          <div class="col-8">
+            <div class="card">
+              <div class="ratio ratio-16x9">
+                <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+              </div>
+              <h6 class="mt-2" id="videoTitle"></h6>
+              <p id="videoDesc"></p>
+              <button class="btn btn-warning">📝 Latihan Soal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB LIVE -->
+      <!-- TAB LIVE -->
+<div id="tab-live" class="d-none">
+
+  <!-- LIVE STREAMING -->
+  <div class="card mb-4">
+    <h5 class="mb-3">🔴 Live Streaming</h5>
+
+    <!-- VIDEO UTAMA -->
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe id="livePlayer"
+        src=""
+        allowfullscreen></iframe>
+    </div>
+
+    <!-- LIST LIVE -->
+    <div class="d-flex gap-3 overflow-auto pb-2" id="liveList">
+      <!-- card live di render js -->
+    </div>
+  </div>
+
+  <!-- ZOOM -->
+  <div class="card">
+    <h5 class="mb-3">🎥 Zoom Class</h5>
+
+    <h6 class="text-muted mb-2">Sedang Berlangsung</h6>
+    <div class="materi-grid mb-4" id="zoomLive"></div>
+
+    <h6 class="text-muted mb-2">Terjadwal</h6>
+    <div class="materi-grid" id="zoomUpcoming"></div>
+  </div>
+
+</div>
+
+<!-- MATERI POPUP -->
+<div id="materiReader" class="materi-reader d-none">
+  <div class="materi-box">
+    <button class="close-btn" onclick="closeMateri()">✖</button>
+    <h5 id="materiTitle"></h5>
+    <p id="materiContent"></p>
+
+    <div class="d-flex justify-content-between mt-3">
+      <button class="btn btn-success" onclick="goVideo()">🎥 Video</button>
+      <a id="downloadLink" class="btn btn-outline-primary" download>⬇ Download</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== DATA ===== */
+const materiDB = [
+  {
+    id:1,
+    mapel:'Maths 7th Grade',
+    judul:'Persamaan Linear',
+    isi:'Persamaan linear adalah persamaan dengan satu variabel...',
+    file:'materi-matematika.pdf',
+    videoId:'kY2r3F1ZK6M',
+    total:12,
+    done:6,
+    icon:'📐'
+  },
+  {
+    id:2,
+    mapel:'English 7th Grade',
+    judul:'Simple Present Tense',
+    isi:'Simple present tense digunakan untuk kebiasaan...',
+    file:'materi-english.pdf',
+    videoId:'7sDY4m8KNLc',
+    total:10,
+    done:2,
+    icon:'🇬🇧'
+  }
+];
+
+const videoDB = [
+  {
+    id:'kY2r3F1ZK6M',
+    judul:'Persamaan Linear',
+    desc:'Pembahasan lengkap persamaan linear kelas 7'
+  },
+  {
+    id:'7sDY4m8KNLc',
+    judul:'Simple Present Tense',
+    desc:'Dasar grammar bahasa Inggris'
+  }
+];
+
+let currentVideo='';
+
+/* ===== TAB ===== */
+function showTab(tab,btn){
+  ['materi','video','live'].forEach(t=>{
+    document.getElementById('tab-'+t)?.classList.add('d-none');
+  });
+  document.getElementById('tab-'+tab).classList.remove('d-none');
+
+  document.querySelectorAll('.filter-bar button')
+    .forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ===== MATERI ===== */
+function renderMateri(){
+  materiList.innerHTML='';
+
+  materiDB.forEach(m=>{
+    const percent = Math.round((m.done / m.total) * 100);
+
+    materiList.innerHTML += `
+      <div class="materi-item" onclick="openMateri(${m.id})">
+        
+        <div class="materi-thumb">
+          ${m.icon}
+        </div>
+
+        <div class="materi-title">${m.mapel}</div>
+        <div class="materi-meta">
+          ${m.total} materi • ${m.done} selesai
+        </div>
+
+        <div class="progress mb-1">
+          <div class="progress-bar bg-success" style="width:${percent}%"></div>
+        </div>
+
+        <small class="text-muted">Progress ${percent}%</small>
+      </div>
+    `;
+  });
+}
+
+function openMateri(id){
+  const m=materiDB.find(x=>x.id===id);
+  materiReader.classList.remove('d-none');
+  materiTitle.innerText=m.judul;
+  materiContent.innerText=m.isi;
+  downloadLink.href=m.file;
+  currentVideo = m.videoId;
+}
+
+function closeMateri(){
+  materiReader.classList.add('d-none');
+}
+
+function goVideo(){
+  showTab('video',document.querySelectorAll('.filter-bar button')[1]);
+  videoPlayer.src=`https://www.youtube.com/embed/${currentVideo}`;
+}
+
+/* ===== VIDEO ===== */
+function renderVideo(){
+  videoList.innerHTML='';
+
+  videoDB.forEach(v=>{
+    videoList.innerHTML+=`
+      <div class="class-card"
+        onclick="playVideo('${v.id}','${v.judul}','${v.desc}')">
+        <strong>${v.judul}</strong><br>
+        <small>${v.desc}</small>
+      </div>
+    `;
+  });
+}
+
+function playVideo(id,title,desc){
+  showTab('video',document.querySelectorAll('.filter-bar button')[1]);
+  videoPlayer.src = `https://www.youtube.com/embed/${id}`;
+  videoTitle.innerText = title;
+  videoDesc.innerText = desc;
+}
+
+/* ===== LIVE ===== */
+function playLive(url){
+  showTab('video',document.querySelectorAll('.filter-bar button')[1]);
+  videoPlayer.src=url;
+}
+
+const liveDB = [
+  {
+    id:1,
+    title:'Live Matematika',
+    mentor:'Pak Budi',
+    youtube:'https://www.youtube.com/embed/live_stream?channel=UC_x5XG1OV2P6uZZ5FSM9Ttw'
+  },
+  {
+    id:2,
+    title:'Live English',
+    mentor:'Ms Jane',
+    youtube:'https://www.youtube.com/embed/live_stream?channel=UC_x5XG1OV2P6uZZ5FSM9Ttw'
+  },
+  {
+    id:3,
+    title:'Live IPA',
+    mentor:'Pak Andi',
+    youtube:'https://www.youtube.com/embed/live_stream?channel=UC_x5XG1OV2P6uZZ5FSM9Ttw'
+  },
+  {
+    id:4,
+    title:'Live IPS',
+    mentor:'Bu Rina',
+    youtube:'https://www.youtube.com/embed/live_stream?channel=UC_x5XG1OV2P6uZZ5FSM9Ttw'
+  }
+];
+
+/* ===== ZOOM DB ===== */
+const zoomDB = [
+  {
+    title:'Zoom Matematika',
+    mentor:'Pak Budi',
+    time:'Hari ini • 19:00',
+    link:'https://zoom.us/j/123456789',
+    status:'live'
+  },
+  {
+    title:'Zoom English',
+    mentor:'Ms Jane',
+    time:'Besok • 20:00',
+    link:'https://zoom.us/j/987654321',
+    status:'upcoming'
+  }
+];
+
+/* ===== RENDER LIVE ===== */
+function renderLive(){
+  liveList.innerHTML='';
+
+  liveDB.forEach((l,i)=>{
+    liveList.innerHTML+=`
+      <div class="live-card" onclick="playLive('${l.youtube}')">
+        <div class="live-thumb">▶</div>
+        <strong>${l.title}</strong><br>
+        <small>${l.mentor}</small>
+      </div>
+    `;
+
+    if(i===0){
+      livePlayer.src = l.youtube;
+    }
+  });
+}
+
+/* ===== RENDER ZOOM ===== */
+function renderZoom(){
+  zoomLive.innerHTML='';
+  zoomUpcoming.innerHTML='';
+
+  zoomDB.forEach(z=>{
+    const card = `
+      <div class="zoom-card">
+        <strong>${z.title}</strong><br>
+        <small>${z.mentor}</small><br>
+        <small>${z.time}</small><br>
+        <a href="${z.link}" target="_blank"
+           class="btn btn-sm btn-primary mt-2">
+           Masuk Zoom
+        </a>
+      </div>
+    `;
+
+    if(z.status==='live'){
+      zoomLive.innerHTML+=card;
+    }else{
+      zoomUpcoming.innerHTML+=card;
+    }
+  });
+}
+
+/* ===== PLAY LIVE ===== */
+function playLive(url){
+  livePlayer.src = url;
+}
+
+const params = new URLSearchParams(location.search);
+if(params.get('tab') === 'video'){
+  showTab('video');
+}
+
+/* INIT */
+renderMateri();
+renderVideo();
+renderLive();
+renderZoom();
+</script>
+
+</body>
+</html>

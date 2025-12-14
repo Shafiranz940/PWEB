@@ -1,0 +1,551 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8">
+    <title>Laporan Siswa</title>
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- BOOTSTRAP & ICON -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+    :root{
+    --green:#6D9773;
+    --dark:#0C3B2E;
+    --brown:#BB8A52;
+    --yellow:#FFBA00;
+    --muted:#6b7280;
+    --glass:rgba(255,255,255,.9);
+    --border:#eee;
+    }
+
+    /* FULL COVER */
+    html,body{
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    font-family:'Roboto',system-ui,Arial;
+    background:var(--dark);
+    }
+
+    /* COVER */
+  .cover{
+  width:95vw;
+  height:96vh;
+  margin:2vh auto;
+  background:var(--glass);
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  gap:20px;
+  box-shadow:0 18px 50px rgba(12,59,46,.08);
+  box-sizing:border-box;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  flex-shrink:0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--green),var(--brown));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+.navlink{
+  padding:10px 12px;
+  border-radius:10px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  color:var(--muted);
+}
+.navlink i{color:var(--green)}
+.navlink.active{
+  background:rgba(109,151,115,.15);
+  color:var(--dark);
+  font-weight:600;
+}
+.quick-card{
+  margin-top:auto;
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+/* ===== MAIN LAYOUT FIX ===== */
+.main-layout{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+/* HEADER */
+.topbar{
+  margin-bottom:10px;
+}
+
+/* GRID KONTEN */
+.layout-grid{
+  flex:1;
+  display:flex;
+  gap:20px;
+  overflow:hidden;
+}
+
+/* LEFT PANEL */
+.left-panel{
+  flex:3;
+  overflow-y:auto;
+  padding-right:6px;
+}
+
+/* RIGHT PANEL */
+.right-panel{
+  flex:1.4;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  flex-shrink:0;
+}
+
+/* CLASS CARD */
+.class-card{
+  background:#e9887f;
+  border-radius:14px;
+  padding:14px;
+  display:flex;
+  gap:12px;
+  margin-bottom:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+
+/* CONTENT (SCROLL DI SINI) */
+.content{
+  flex:1;
+  overflow-y:auto;
+  padding-right:6px;
+}
+
+/* PANEL KONTEN UTAMA */
+.content-panel{
+  background:#ffffff;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  min-height:100%;
+}
+
+/* Biar card tidak nempel */
+.content-panel .class-card{
+  margin-bottom:14px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.04);
+}
+    .class-thumb{
+    width:64px;
+    height:64px;
+    border-radius:12px;
+    background:#e7f1ff;
+    }
+
+    .class-info h6{
+    margin:0;
+    }
+
+    .class-meta{
+    font-size:13px;
+    color:#666;
+    }
+
+    /* CALENDAR */
+    .calendar-box,
+    .schedule-box{
+    background:#fff;
+    border-radius:14px;
+    padding:14px;
+    }
+
+    .calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+    margin-top:10px;
+    }
+
+    .calendar-day{
+    padding:8px;
+    border-radius:8px;
+    background:#f1f1f1;
+    text-align:center;
+    font-size:13px;
+    }
+
+    .calendar-day.has-class{
+    background:#e7f1ff;
+    font-weight:600;
+    }
+
+    /* SCHEDULE */
+    .schedule-item{
+    padding:10px;
+    border-radius:10px;
+    background:#f8f9fa;
+    margin-bottom:8px;
+    font-size:14px;
+    }
+
+    .calendar-day.today{
+  background:var(--green);
+  color:#fff;
+  font-weight:700;
+}
+
+.calendar-day.empty{
+  background:transparent;
+}
+    </style>
+    </head>
+
+    <body>
+
+    <div class="cover">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+        <div class="logo">Logo</div>
+        <strong>NAMA BIMBEL</strong>
+        </div>
+
+        <div class="navlink" onclick="location.href='dashboard.html'">
+        <i class="bi bi-speedometer2"></i>Dashboard
+        </div>
+        <div class="navlink" onclick="location.href='kelas.html'">
+        <i class="bi bi-people-fill"></i>Daftar Kelas
+        </div>
+        <div class="navlink" onclick="location.href='materi.html'">
+        <i class="bi bi-journal-bookmark"></i>Materi Belajar
+        </div>
+        <div class="navlink" onclick="location.href='quiz.html'">
+        <i class="bi bi-calendar2-event"></i>Latihan Soal
+        </div>
+        <div class="navlink" onclick="location.href='LaporanSiswa.html'">
+            <i class="bi bi-graph-up"></i>Laporan Siswa
+        </div>
+        <div class="navlink" onclick="location.href='setting.html'">
+        <i class="bi bi-gear-fill"></i>Pengaturan
+        </div>
+
+        <div class="quick-card">
+        <strong>Quick Actions</strong>
+        <button class="btn btn-sm mt-2" style="background:var(--green);color:#fff">
+            📝 Lanjutkan Belajar
+        </button>
+        </div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-layout">
+
+        <!-- CONTENT -->
+        <div class="layout-grid">
+
+        <!-- LEFT -->
+        <div class="left-panel">
+
+        <div class="content-panel">
+            <h4>My Courses</h4>
+
+            <div class="filter-bar mb-3">
+            <button class="btn btn-sm btn-outline-primary">All</button>
+            <button class="btn btn-sm btn-outline-primary">Active</button>
+            <button class="btn btn-sm btn-outline-primary">Upcoming</button>
+            <button class="btn btn-sm btn-outline-primary">Completed</button>
+            </div>
+
+            <div id="myClassList"></div>
+
+            <hr>
+
+            <h5>Rekomendasi Kelas</h5>
+            <div id="recommendedList"></div>
+        </div>
+        </div>
+
+
+        <!-- RIGHT -->
+        <div class="right-panel">
+        <div class="calendar-box">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <button class="btn btn-sm btn-outline-secondary" onclick="prevMonth()">‹</button>
+            <strong id="calendarTitle" class="text-center flex-grow-1"></strong>
+            <button class="btn btn-sm btn-outline-secondary" onclick="nextMonth()">›</button>
+        </div>
+
+        <div class="calendar-grid text-muted" style="font-size:12px">
+            <div>Min</div><div>Sen</div><div>Sel</div>
+            <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+        </div>
+
+        <div class="calendar-grid" id="calendar"></div>
+        </div>
+
+
+        <div class="schedule-box">
+            <strong>Schedule Terdekat</strong>
+            <div id="scheduleList"></div>
+        </div>
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+    let currentMonth = new Date().getMonth();
+    let currentYear  = new Date().getFullYear();
+    document.querySelectorAll('.navlink').forEach(el=>{
+      el.addEventListener('click', ()=> {
+        document.querySelectorAll('.navlink').forEach(n=>n.classList.remove('active'));
+        el.classList.add('active');
+        // optional: scroll internal panels or focus by id if implemented
+        const target = el.dataset.target;
+        if(target){
+          // highlight corresponding panel briefly (if present)
+          const panel = document.getElementById(target);
+          if(panel){
+            panel.style.boxShadow = '0 12px 40px rgba(109,151,115,0.12)';
+            setTimeout(()=> panel.style.boxShadow = '0 8px 22px rgba(12,59,46,0.03)', 900);
+          }
+        }
+      });
+    });
+    
+    /* ================= DATA ================= */
+    const today = new Date();
+
+    const recommendedClasses=[
+    {
+        id:1,
+        subject:'Matematika Dasar',
+        desc:'Aljabar & Operasi',
+        mentor:'Pak Budi',
+        startDate:'2025-12-18',
+        endDate:'2025-12-25',
+        time:'19:00'
+    },
+    {
+        id:2,
+        subject:'Bahasa Inggris',
+        desc:'Grammar & Speaking',
+        mentor:'Ms. Jane',
+        startDate:'2025-12-20',
+        endDate:'2025-12-28',
+        time:'20:00'
+    }
+    ];
+
+    let myClasses=[];
+    let filteredClasses=[];
+
+    /* ================= RENDER ================= */
+    function renderMyClasses(){
+    myClassList.innerHTML='';
+    filteredClasses.forEach(c=>{
+        myClassList.innerHTML+=`
+        <div class="class-card">
+            <div class="class-thumb"></div>
+            <div class="class-info">
+            <h6>${c.subject}</h6>
+            <small>${c.desc}</small>
+            <div class="class-meta">
+                👨‍🏫 ${c.mentor} • 🕒 ${c.time}
+            </div>
+            </div>
+        </div>
+        `;
+    });
+    }
+
+    function renderRecommended(){
+    recommendedList.innerHTML='';
+    recommendedClasses.forEach(c=>{
+        recommendedList.innerHTML+=`
+        <div class="class-card">
+            <div class="class-thumb"></div>
+            <div class="class-info">
+            <h6>${c.subject}</h6>
+            <small>${c.desc}</small><br>
+            <button class="btn btn-sm btn-success mt-1"
+                onclick="addClass(${c.id})">Tambah</button>
+            </div>
+        </div>
+        `;
+    });
+    }
+
+    /* ================= FILTER ================= */
+    function filterClasses(type){
+    const now=new Date();
+
+    filteredClasses=myClasses.filter(c=>{
+        const start=new Date(c.startDate);
+        const end=new Date(c.endDate);
+
+        if(type==='active') return now>=start && now<=end;
+        if(type==='upcoming') return now<start;
+        if(type==='completed') return now>end;
+        return true;
+    });
+
+    renderMyClasses();
+    }
+
+    /* ================= ADD CLASS ================= */
+    function addClass(id){
+    const cls=recommendedClasses.find(c=>c.id===id);
+    myClasses.push(cls);
+
+    filterClasses('all');
+    renderCalendar();
+    renderSchedule();
+    }
+
+    /* ================= CALENDAR ================= */
+    function renderCalendar(){
+  calendar.innerHTML = '';
+
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+  const monthNames = [
+    'Januari','Februari','Maret','April','Mei','Juni',
+    'Juli','Agustus','September','Oktober','November','Desember'
+  ];
+
+  calendarTitle.innerText = `${monthNames[currentMonth]} ${currentYear}`;
+
+  // empty cells before day 1
+  for(let i=0;i<firstDay;i++){
+    const empty = document.createElement('div');
+    empty.className = 'calendar-day empty';
+    calendar.appendChild(empty);
+  }
+
+  // days
+  for(let day=1;day<=daysInMonth;day++){
+    const d = document.createElement('div');
+    d.className = 'calendar-day';
+    d.innerText = day;
+
+    const thisDate = new Date(currentYear, currentMonth, day);
+
+    // today
+    if(
+      day === today.getDate() &&
+      currentMonth === today.getMonth() &&
+      currentYear === today.getFullYear()
+    ){
+      d.classList.add('today');
+    }
+
+    // class day
+    myClasses.forEach(c=>{
+      const start = new Date(c.startDate);
+      if(
+        start.getDate() === day &&
+        start.getMonth() === currentMonth &&
+        start.getFullYear() === currentYear
+      ){
+        d.classList.add('has-class');
+      }
+    });
+
+    calendar.appendChild(d);
+  }
+}
+
+function nextMonth(){
+  currentMonth++;
+  if(currentMonth > 11){
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar();
+}
+
+function prevMonth(){
+  currentMonth--;
+  if(currentMonth < 0){
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendar();
+}
+
+    /* ================= SCHEDULE ================= */
+    function renderSchedule(){
+    scheduleList.innerHTML='';
+
+    [...myClasses]
+        .filter(c=>new Date(c.startDate)>=today)
+        .sort((a,b)=>new Date(a.startDate)-new Date(b.startDate))
+        .slice(0,5)
+        .forEach(c=>{
+        scheduleList.innerHTML+=`
+            <div class="schedule-item">
+            <strong>${c.subject}</strong><br>
+            ${c.startDate} • ${c.time}
+            </div>
+        `;
+        });
+    }
+
+    /* INIT */
+    renderRecommended();
+    filterClasses('all');
+    renderCalendar();
+    renderSchedule();
+    </script>
+
+    </body>
+    </html>
