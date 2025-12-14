@@ -12,18 +12,19 @@ CREATE TABLE users (
   name VARCHAR(100) NOT NULL,
   gender VARCHAR(100) NOT NULL,
   username VARCHAR(100) NOT NULL,
+  kelas VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE,
   password VARCHAR(255),
   total_points INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name, gender, username, email, password, total_points) VALUES
-('Alya',   'Perempuan', 'alya01',   'alya@mail.com',   'alya123',   1200),
-('Rizky',  'Laki-laki', 'rizky01',  'rizky@mail.com',  'rizky123',  1100),
-('Nabila', 'Perempuan', 'nabila01', 'nabila@mail.com', 'nabila123', 980),
-('Naufa',  'Laki-laki', 'naufa01',  'naufa@mail.com',  'naufa123',  975),
-('Dani',   'Laki-laki', 'dani01',   'dani@mail.com',   'dani123',   950);
+INSERT INTO users (name, gender, username, kelas, email, password, total_points) VALUES
+('Alya',   'Perempuan', 'alya01',   'Kelas X', 'alya@mail.com',   'alya123',   1200),
+('Rizky',  'Laki-laki', 'rizky01',  'Kelas XI', 'rizky@mail.com',  'rizky123',  1100),
+('Nabila', 'Perempuan', 'nabila01', 'Kelas X', 'nabila@mail.com', 'nabila123', 980),
+('Naufa',  'Laki-laki', 'naufa01',  'Kelas XII', 'naufa@mail.com',  'naufa123',  975),
+('Dani',   'Laki-laki', 'dani01',   'Kelas XII', 'dani@mail.com',   'dani123',   950);
 
 -- ===============================
 -- CLASSES (KELAS)
@@ -149,3 +150,4 @@ CREATE TABLE feedback (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
