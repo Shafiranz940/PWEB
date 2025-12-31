@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-title">FORM REGISTRASI MAHASISWA</h1>
+        
+        <div class="success-message" id="successMessage">
+            Data berhasil disimpan!
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="studentName">Nama Mahasiswa</label>
+                <div class="autocomplete-container">
+                    <input type="text" id="studentName" name="studentName" required 
+                           placeholder="Ketik nama mahasiswa...">
+                    <div class="autocomplete-suggestions" id="nameSuggestions"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nim">NIM (Nomor Induk Mahasiswa)</label>
+                <input type="text" id="nim" name="nim" required 
+                       placeholder="Contoh: 202110001" pattern="[0-9]{9}">
+            </div>
+
+            <div class="form-group">
+                <label for="course">Mata Kuliah</label>
+                <select id="course" name="course" required>
+                    <option value="">Pilih Mata Kuliah</option>
+                    <option value="Pemrograman Web">Pemrograman Web</option>
+                    <option value="Basis Data">Basis Data</option>
+                    <option value="Algoritma dan Struktur Data">Algoritma dan Struktur Data</option>
+                    <option value="Jaringan Komputer">Jaringan Komputer</option>
+                    <option value="Sistem Operasi">Sistem Operasi</option>
+                    <option value="Kecerdasan Buatan">Kecerdasan Buatan</option>
+                    <option value="Grafika Komputer">Grafika Komputer</option>
+                    <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="lecturer">Dosen Pengampu</label>
+                <select id="lecturer" name="lecturer" required>
+                    <option value="">Pilih Dosen</option>
+                    <option value="Dr. Ahmad Susanto, M.Kom">Dr. Ahmad Susanto, M.Kom</option>
+                    <option value="Prof. Siti Nurhaliza, Ph.D">Prof. Siti Nurhaliza, Ph.D</option>
+                    <option value="Dr. Budi Raharjo, M.T">Dr. Budi Raharjo, M.T</option>
+                    <option value="Ir. Dewi Sartika, M.Sc">Ir. Dewi Sartika, M.Sc</option>
+                    <option value="Dr. Eko Prasetyo, M.Kom">Dr. Eko Prasetyo, M.Kom</option>
+                    <option value="Prof. Fatima Azzahra, Ph.D">Prof. Fatima Azzahra, Ph.D</option>
+                    <option value="Dr. Galih Wicaksono, M.T">Dr. Galih Wicaksono, M.T</option>
+                    <option value="Ir. Hana Pertiwi, M.Kom">Ir. Hana Pertiwi, M.Kom</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Submit
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

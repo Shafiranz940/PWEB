@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #6aa6ff, #b3e5fc);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+/* hapus garis atas */
+.container::before {
+    display: none;
+}
+
+.form-title {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 26px;
+    font-size: 22px;
+    font-weight: 650;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #374151;
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    background: #fff;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #5f7cff;
+    box-shadow: 0 0 0 3px rgba(95, 124, 255, 0.2);
+}
+
+/* Autocomplete Styles */
+.autocomplete-container {
+    position: relative;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e1e5e9;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.autocomplete-suggestion {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.autocomplete-suggestion:hover,
+.autocomplete-suggestion.selected {
+    background-color: #f8f9ff;
+    color: #667eea;
+}
+
+.autocomplete-suggestion:last-child {
+    border-bottom: none;
+}
+
+.highlight {
+    background-color: #fff3cd;
+    font-weight: bold;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #5f7cff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #4a67f0;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(95, 124, 255, 0.35);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .form-title {
+        font-size: 24px;
+    }
+}
+
+/* Success Message */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+    display: none;
+}
