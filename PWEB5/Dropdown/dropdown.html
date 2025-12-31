@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Dinamis Benua & Negara</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>NAVIGASI GEOGRAFIS DINAMIS</h1>
+
+    <div class="dropdown-group">
+      <label for="continentSelect">Pilih Benua:</label>
+      <select id="continentSelect">
+        <option value="">-- Pilih Benua --</option>
+      </select>
+    </div>
+
+    <div class="dropdown-group">
+      <label for="regionSelect">Pilih Subregion:</label>
+      <select id="regionSelect" disabled>
+        <option value="">-- Pilih Subregion --</option>
+      </select>
+    </div>
+
+    <div class="dropdown-group">
+      <label for="countrySelect">Pilih Negara:</label>
+      <select id="countrySelect" disabled>
+        <option value="">-- Pilih Negara --</option>
+      </select>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+
+</body>
+</html>
